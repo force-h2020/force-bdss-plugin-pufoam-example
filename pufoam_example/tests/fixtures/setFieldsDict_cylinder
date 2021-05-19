@@ -1,0 +1,76 @@
+FoamFile
+{
+	version                       2.2;
+	format                        ascii;
+	class                         dictionary;
+	location                      "system";
+	object                        setFieldsDict;
+}
+
+defaultFieldValues
+(
+	volScalarFieldValue alpha.gas 1 
+	volScalarFieldValue wBA_l 0 
+	volScalarFieldValue mZero 0 
+	volScalarFieldValue mOne 0 
+	volScalarFieldValue mTwo 0 
+	volScalarFieldValue mThree 0 
+	volScalarFieldValue mFour 0 
+	volScalarFieldValue mFive 0 
+	volScalarFieldValue M0 0 
+	volScalarFieldValue M1 0 
+	volScalarFieldValue M2 0 
+	volScalarFieldValue M3 0 
+	volScalarFieldValue M4 0 
+	volScalarFieldValue M5 0 
+	volScalarFieldValue rho_foam 1.2 
+	volScalarFieldValue rho_gas 1.2 
+	volScalarFieldValue weight0 0 
+	volScalarFieldValue weight1 0 
+	volScalarFieldValue weight2 0 
+	volScalarFieldValue node0 0 
+	volScalarFieldValue node1 0 
+	volScalarFieldValue node2 0 
+	volScalarFieldValue TS 298 
+);
+regions
+(
+	cylinderToCell
+	{
+		p1                            (0 0 0);
+		p2                            (0 0 20);
+		radius                        150;
+		fieldValues
+		(
+			volScalarFieldValue alpha.gas 0 
+			volScalarFieldValue wBA_l 0.057 
+			volScalarFieldValue mZero 10000000000000.0 
+			volScalarFieldValue mOne 5.2622e-06 
+			volScalarFieldValue mTwo 2.7969e-24 
+			volScalarFieldValue mThree 1.5015e-42 
+			volScalarFieldValue mFour 8.1421e-61 
+			volScalarFieldValue mFive 4.4594e-79 
+			volScalarFieldValue M0 9999900000000.0 
+			volScalarFieldValue M1 5.2622e-06 
+			volScalarFieldValue M2 2.7969e-24 
+			volScalarFieldValue M3 1.5015e-42 
+			volScalarFieldValue M4 8.1421e-61 
+			volScalarFieldValue M5 4.4594e-79 
+			volScalarFieldValue rho_foam 1100.0 
+			volScalarFieldValue rho_gas 1e-08 
+			volScalarFieldValue muFoamCorr 0.001 
+			volScalarFieldValue muMixture 0.001 
+			volScalarFieldValue muFoam 0.001 
+			volScalarFieldValue weight0 5726350000000.0 
+			volScalarFieldValue weight1 4273650000000.0 
+			volScalarFieldValue weight2 3435940000000.0 
+			volScalarFieldValue node0 4.8065e-19 
+			volScalarFieldValue node1 5.8728e-19 
+			volScalarFieldValue node2 5.97756e-19 
+			volScalarFieldValue TS 300 
+			volScalarFieldValue p_rgh 100000.0 
+			volScalarFieldValue p 100000.0 
+		);
+	}
+
+);

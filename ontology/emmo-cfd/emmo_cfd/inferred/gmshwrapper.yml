@@ -1,0 +1,8 @@
+identifier: emmo
+ontology_file: gmshwrapper-inferred.owl
+reference_by_label: True
+namespaces:
+    emmo: http://emmo.info/emmo
+active_relationships:
+    - http://emmo.info/emmo#EMMO_ec2472ae_cf4a_46a5_8555_1556f5a6c3c5
+default_relationship: http://emmo.info/emmo#EMMO_17e27c22_37e1_468c_9dd7_95e137f73e7f

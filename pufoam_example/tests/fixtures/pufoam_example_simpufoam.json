@@ -1,0 +1,375 @@
+{
+    "version": "1.1",
+    "workflow": {
+        "mco_model": {
+            "id": "force.bdss.pufoam.plugin.example.v0.factory.pufoam_mco",
+            "model_data": {
+                "num_points": 1,
+                "parameters": [
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.pufoam_mco.parameter.ranged",
+                        "model_data": {
+                            "lower_bound": 135.0,
+                            "upper_bound": 155.0,
+                            "initial_value": 135.0,
+                            "n_samples": 5,
+                            "name": "isocyanate_concentration",
+                            "type": "CONCENTRATION"
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.pufoam_mco.parameter.ranged",
+                        "model_data": {
+                            "lower_bound": 2.0,
+                            "upper_bound": 5.0,
+                            "initial_value": 5.0,
+                            "n_samples": 5,
+                      ®      "name": "solvent_concentration",
+                            "type": "CONCENTRATION"
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.pufoam_mco.parameter.ranged",
+                        "model_data": {
+                            "lower_bound": 0.05,
+                            "upper_bound": 0.06,
+                            "initial_value": 0.057,
+                            "n_samples": 5,
+                            "name": "blowing_agent_concentration",
+                            "type": "CONCENTRATION"
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.pufoam_mco.parameter.listed",
+                        "model_data": {
+                            "levels": [
+                                200.0
+                            ],
+                            "name": "polyol_concentration",
+                            "type": "CONCENTRATION"
+                        }
+                    }
+                ],
+                "kpis": [
+                    {
+                        "name": "cost",
+                        "objective": "MINIMISE",
+                        "auto_scale": true,
+                        "scale_factor": 1.0,
+                        "target_value": 0.0,
+                        "use_bounds": false,
+                        "lower_bound": 0.0,
+                        "upper_bound": 1.0
+                    },
+                    {
+                        "name": "thermal_cond",
+                        "objective": "MINIMISE",
+                        "auto_scale": true,
+                        "scale_factor": 1.0,
+                        "target_value": 0.0,
+                        "use_bounds": true,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.012
+                    },
+                    {
+                        "name": "overpacking_frac",
+                        "objective": "TARGET",
+                        "use_bounds": true,
+                        "target_value": 1.2,
+                        "upper_bound": 2.0,
+                        "auto_scale": true,
+                        "scale_factor": 1.0
+                    },
+                    {
+                        "name": "foam_density",
+                        "objective": "MINIMISE",
+                        "auto_scale": true,
+                        "scale_factor": 1.0,
+                        "target_value": 0.0,
+                        "use_bounds": true,
+                        "lower_bound": 28.0,
+                        "upper_bound": 35.0
+                    }
+                ]
+            }
+        },
+        "execution_layers": [
+            {
+                "data_sources": [
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.chemical",
+                        "model_data": {
+                            "name": "A Polyol",
+                            "role": "Polyol",
+                            "molecular_weight": 702.0,
+                            "density": 1.1,
+                            "functionality": 4.0,
+                            "price": 0.02,
+                            "conc_input": "Parameter",
+                            "input_slot_info": [
+                                {
+                                    "name": "polyol_concentration"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "polyol_data"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.chemical",
+                        "model_data": {
+                            "name": "An Isocyanate",
+                            "role": "Isocyanate",
+                            "molecular_weight": 369.36,
+                            "density": 1.23,
+                            "functionality": 2.0,
+                            "price": 0.05,
+                            "conc_input": "Parameter",
+                            "input_slot_info": [
+                                {
+                                    "name": "isocyanate_concentration"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "isocyanate_data"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.chemical",
+                        "model_data": {
+                            "name": "A Solvent",
+                            "role": "Solvent",
+                            "molecular_weight": 18.0,
+                            "density": 1.0,
+                            "functionality": 1.0,
+                            "price": 0.001,
+                            "conc_input": "Parameter",
+                            "input_slot_info": [
+                                {
+                                    "name": "solvent_concentration"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "solvent_data"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.chemical",
+                        "model_data": {
+                            "name": "A Blowing Agent",
+                            "role": "Blowing Agent",
+                            "molecular_weight": 12.0,
+                            "density": 0.65,
+                            "functionality": 1.0,
+                            "price": 150.0,
+                            "conc_input": "Parameter",
+                            "input_slot_info": [
+                                {
+                                    "name": "blowing_agent_concentration"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "blowing_agent_data"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "data_sources": [
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.formulation",
+                        "model_data": {
+                            "n_chemicals": 4,
+                            "molar_concentration": "mol m-3",
+                            "density": "kg m-3",
+                            "molecular_mass": "kg kmol-1",
+                            "input_slot_info": [
+                                {
+                                    "source": "Environment",
+                                    "name": "polyol_data"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "isocyanate_data"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "solvent_data"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "blowing_agent_data"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "formulation"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.reaction_parameters",
+                        "model_data": {
+                            "nu_gelling": 1.0,
+                            "E_a_gelling": 3.514e4,
+                            "delta_H_gelling": -6.85e4,
+                            "gelling_point": 0.606,
+                            "nu_blowing": 1.050e3,
+                            "E_a_blowing": 2.704e4,
+                            "delta_H_blowing": -8.15e4,
+                            "latent_heat": 2e5,
+                            "input_slot_info": [],
+                            "output_slot_info": [
+                                {
+                                    "name": "gelling_param"
+                                },
+                                {
+                                    "name": "blowing_param"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.mesh_builder",
+                        "model_data": {
+                            "resolution": 5,
+                            "input_slot_info": [],
+                            "output_slot_info": [
+                                {
+                                    "name": "rectangular_mesh"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "data_sources": [
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.SimPUFoam_simulation",
+                        "model_data": {
+                            "time_steps": 100,
+                            "case_files": "pufoam_example",
+                            "host": "68.183.77.215",
+                            "port": 81,
+                            "n_commands": 3,
+                            "commands": [
+                                {"command": "blockMesh", "log_file": "blocklog"},
+                                {"command": "setFields", "log_file": "fieldlog"},
+                                {"command": "PUFoam", "log_file": "foamlog"}
+                            ],
+                            "n_outputs": 1,
+                            "outputs": [
+                                "postProcessing/volAverage/0/volFieldValue.dat"
+                            ],
+                            "input_slot_info": [
+                                {
+                                    "source": "Environment",
+                                    "name": "formulation"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "gelling_param"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "blowing_param"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "rectangular_mesh"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "results"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "data_sources": [
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.foam_post_processing",
+                        "model_data": {
+                            "n_system_lines": 3,
+                            "input_slot_info": [
+                                {
+                                    "source": "Environment",
+                                    "name": "results"
+                                },
+                                {
+                                    "source": "Environment",
+                                    "name": "rectangular_mesh"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "bsd"
+                                },
+                                {
+                                    "name": "filling_frac"
+                                },
+                                {
+                                    "name": "overpacking_frac"
+                                },
+                                {
+                                    "name": "foam_viscosity"
+                                },
+                                {
+                                    "name": "foam_density"
+                                },
+                                {
+                                    "name": "thermal_cond"
+                                },
+                                {
+                                    "name": "height_profile"
+                                },
+                                {
+                                    "name": "temp_profile"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "force.bdss.pufoam.plugin.example.v0.factory.cost",
+                        "model_data": {
+                            "PU_volume": 0.001,
+                            "threshold": 0.0,
+                            "input_slot_info": [
+                                {
+                                    "source": "Environment",
+                                    "name": "formulation"
+                                }
+                            ],
+                            "output_slot_info": [
+                                {
+                                    "name": "cost"
+                                },
+                                {
+                                    "name": "cost_pass"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ],
+        "notification_listeners": []
+    }
+}

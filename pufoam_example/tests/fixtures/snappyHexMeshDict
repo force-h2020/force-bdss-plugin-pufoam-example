@@ -1,0 +1,110 @@
+FoamFile
+{
+	version                       2.2;
+	format                        ascii;
+	class                         dictionary;
+	location                      "system";
+	object                        snappyHexMeshDict;
+}
+
+#includeEtc                   "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+castellatedMesh               on;
+snap                          off;
+addLayers                     off;
+geometry
+{
+	Wall
+	{
+		type                          triSurfaceMesh;
+		file                          "new_surface.stl";
+	}
+
+	refinementBox
+	{
+		type                          searchableBox;
+		min
+		(
+			0 0 0 
+		);
+		max
+		(
+			0 0 0 
+		);
+	}
+
+}
+
+castellatedMeshControls
+{
+	features
+	(
+	);
+	refinementSurfaces
+	{
+		Wall
+		{
+			level
+			(
+				0 0 
+			);
+			patchInfo
+			{
+				type                          wall;
+			}
+
+		}
+
+	}
+
+	refinementRegions
+	{
+		refinementBox
+		{
+			levels
+			(
+				(0 0) 
+			);
+			mode                          inside;
+		}
+
+	}
+
+	locationInMesh
+	(
+		0 0 0 
+	);
+	allowFreeStandingZoneFaces    false;
+}
+
+snapControls
+{
+	explicitFeatureSnap           true;
+	implicitFeatureSnap           false;
+}
+
+addLayersControls
+{
+	layers
+	{
+		Wall
+		{
+			nSurfaceLayers                0;
+		}
+
+	}
+
+	relativeSizes                 true;
+	expansionRatio                1.0;
+	finalLayerThickness           0.5;
+	minThickness                  0.001;
+}
+
+meshQualityControls
+{
+}
+
+writeFlags
+(
+	noRefinement 
+);
+mergeTolerance                1e-06;

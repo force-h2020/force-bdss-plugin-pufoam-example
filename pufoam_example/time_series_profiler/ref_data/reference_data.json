@@ -1,0 +1,45 @@
+{
+  "PUFOAM_REF": {
+    "chemicals": [
+      {
+        "name": "A Polyol",
+        "role": "Polyol",
+        "molecular_weight": 702,
+        "density": 1.1,
+        "functionality": 4.0,
+        "concentration": 200
+      },
+      {
+        "name": "An Isocyanate",
+        "role": "Isocyanate",
+        "molecular_weight": 369.36,
+        "density": 1.23,
+        "functionality": 2.0,
+        "concentration": 150.0
+      },
+      {
+        "name": "WATER",
+        "role": "Solvent",
+        "molecular_weight": 18,
+        "density": 1.00,
+        "functionality": 1.0,
+        "concentration": 2.0
+      },
+      {
+        "name": "A Blowing Agent",
+        "role": "Blowing Agent",
+        "molecular_weight": 12.0,
+        "density": 0.65,
+        "functionality": 1.0,
+        "concentration": 12.0
+      }
+    ],
+    "data_sets": [
+      {
+        "temperature": 25,
+        "initial_volume": 0.1,
+        "data_file": "pufoam_ref_data_1.csv"
+      }
+    ]
+  }
+}

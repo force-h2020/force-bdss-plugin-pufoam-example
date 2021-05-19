@@ -1,0 +1,4 @@
+PREFIX emmo: <http://emmo.info/emmo#>
+SELECT ?meshdata
+WHERE 
+    { ?meshdata rdf:type emmo:EMMO_7964d567-ea14-4cb2-bc3b-a11b52212160 }

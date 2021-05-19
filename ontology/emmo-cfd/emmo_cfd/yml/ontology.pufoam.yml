@@ -1,0 +1,1044 @@
+---
+author: "Matthias Bueschelberger, Haralambi Todorov, Arpit Singhal and Pablo de Andres, Fraunhofer IWM"
+namespace: FORCE_OFI_ONTOLOGY
+version: "2.0"
+ontology:
+
+  FORCE_OFI_WRAPPER:
+    description: The simopenfoam wrapper
+    subclass_of:
+      - CUBA.WRAPPER
+
+  ############################ Relationships
+
+  HAS_PART: 
+    default_rel: true
+    description: "default relationship"
+    inverse: FORCE_OFI_ONTOLOGY.IS_PART_OF
+    subclass_of:
+      - CUBA.ACTIVE_RELATIONSHIP
+
+  IS_PART_OF: 
+    description: "inverse of the default relationship"
+    inverse: FORCE_OFI_ONTOLOGY.HAS_PART
+    subclass_of:
+      - CUBA.PASSIVE_RELATIONSHIP
+
+  ############################ major entities
+
+  SIMULATION:
+    subclass_of:
+      - CUBA.ENTITY
+    attributes:
+      FORCE_OFI_ONTOLOGY.IS_COMPLETED: false
+      FORCE_OFI_ONTOLOGY.OFI_SEGMENT: "start"
+
+  OPEN_FOAM_DATA:
+    subclass_of:
+      - CUBA.ENTITY
+
+  CASE:
+    subclass_of:
+      - CUBA.ENTITY
+    attributes:
+      FORCE_OFI_ONTOLOGY.NAME: 
+
+  INPUT_FILES:
+    subclass_of:
+      - CUBA.ENTITY
+
+  OUTPUT_FILES:
+    subclass_of:
+      - CUBA.ENTITY
+
+  FILE:
+    subclass_of:
+      - CUBA.ENTITY
+    attributes:
+      FORCE_OFI_ONTOLOGY.NAME:
+      FORCE_OFI_ONTOLOGY.DIRECTORY: 
+      FORCE_OFI_ONTOLOGY.CONTENT: 
+      FORCE_OFI_ONTOLOGY.DATATYPE:
+
+  ######################## major openfoam data entites
+
+  CONTROL_DICT_DATA:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.OPEN_FOAM_DATA
+
+  KINETICS_PROPERTIES:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.OPEN_FOAM_DATA
+  
+  BLOCK_MESH_DICT_DATA:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.OPEN_FOAM_DATA
+
+ ########################## contral dict data entites
+
+  CONTROL_DICT_META_DATA:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "FoamFile"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  CONTROL_DICT_VERSION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 2.2
+      FORCE_OFI_ONTOLOGY.CONCEPT: "version"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  CONTROL_DICT_FORMAT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "ascii"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "format"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  CONTROL_DICT_CLASS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "dictionary"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "class"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  CONTROL_DICT_LOCATION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "system"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "location"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  CONTROL_DICT_OBJECT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "controlDict"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "object"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  APPLICATION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "QmomKinetics"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "application"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  ONSET:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "startTime"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "startFrom"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  START_TIME:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "startTime" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  END_TIME:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 32
+      FORCE_OFI_ONTOLOGY.CONCEPT: "endTime"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  DELTA_T:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.25
+      FORCE_OFI_ONTOLOGY.CONCEPT: "deltaT"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  WRITE_CONTROL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "adjustableRunTime"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeControl"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  WRITE_INTERVAL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 1
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeInterval"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  PURGE_WRITE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.INT_VALUE: 0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "purgeWrite"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  WRITE_FORMAT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "ascii"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeFormat"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  WRITE_PRECISION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.INT_VALUE: 8
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writePrecision"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+      
+  WRITE_COMPRESSION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "uncompressed"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeCompression"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  TIME_FORMAT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "general"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "timeFormat"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+      
+  TIME_PRECISION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA  
+    attributes:
+      FORCE_OFI_ONTOLOGY.INT_VALUE: 8
+      FORCE_OFI_ONTOLOGY.CONCEPT: "timePrecision"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  RUN_TIME_MODIFIER:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "yes"  
+      FORCE_OFI_ONTOLOGY.CONCEPT: "runTimeModifiable"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  TIME_STEP_ADJUSTER:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "yes"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "adjustTimeStep"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MAX_CO:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.2
+      FORCE_OFI_ONTOLOGY.CONCEPT: "maxCO"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MAX_ALPHA_CO:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.1
+      FORCE_OFI_ONTOLOGY.CONCEPT: "maxAlphaCO"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MAX_DELTA_T:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.25      
+      FORCE_OFI_ONTOLOGY.CONCEPT: "maxDeltaT"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  CONTROL_DICT_FUNCTIONS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "functions"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  VOL_AVERAGE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CONTROL_DICT_FUNCTIONS
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "volAverage"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  VOL_AVERAGE_TYPE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "volFieldValue"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "type"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  VOL_AVERAGE_OBJECT_LIBS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: '("libfieldFunctionObjects.so")'
+      FORCE_OFI_ONTOLOGY.CONCEPT: "functionObjectLibs"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+   
+  VOL_AVERAGE_LOG:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "true"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "log"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  VOL_AVERAGE_VALUE_OUTPUT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "false"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "valueOutput"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  VOL_AVERAGE_SOURCE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "all" 
+      FORCE_OFI_ONTOLOGY.CONCEPT: "source"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+      
+  VOL_AVERAGE_OPERATION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "volAverage" 
+      FORCE_OFI_ONTOLOGY.CONCEPT: "operation"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  VOL_AVERAGE_OUTPUT_CONTROL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "outputTime" 
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeControl"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+      
+  VOL_AVERAGE_OUTPUT_INTERVAL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.INT_VALUE: 1
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeInterval"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+      
+  VOL_AVERAGE_FIELD_WRITER:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "true"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "writeFields"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  VOL_AVERAGE_FIELDS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "fields"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list"
+
+  VOL_AVERAGE_ALPHA_GAS_FIELD:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE_FIELDS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "alpha.gas"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "field_variable_name"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  VOL_AVERAGE_FOAM_CORR_FIELD:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE_FIELDS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "muFoamCorr"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "field_variable_name"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  VOL_AVERAGE_M_ZERO_FIELD:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE_FIELDS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "mZero"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "field_variable_name"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+  
+  VOL_AVERAGE_M_ONE_FIELD:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE_FIELDS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "mOne"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "field_variable_name"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  VOL_AVERAGE_RHO_FOAM_FIELD:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE_FIELDS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "rho_foam"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "field_variable_name"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  VOL_AVERAGE_RHO_FIELD:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.VOL_AVERAGE_FIELDS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "rho"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "field_variable_name"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+      
+ ########################### kinetics data dict entites
+
+  KINETICS_DICT_META_DATA:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.KINETICS_PROPERTIES
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "FoamFile" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  KINETICS_DICT_VERSION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.KINETICS_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 2.2
+      FORCE_OFI_ONTOLOGY.CONCEPT: "version"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  KINETICS_DICT_FORMAT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.KINETICS_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "ascii"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "format"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  KINETICS_DICT_CLASS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.KINETICS_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "dictionary"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "class"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  KINETICS_DICT_LOCATION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.KINETICS_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "constant"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "location"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  KINETICS_DICT_OBJECT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.KINETICS_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "kineticsProperties"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "object"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+  
+  GELLING_CONSTANTS:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.KINETICS_PROPERTIES
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "GellingConstants"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  BLOWING_AGENT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.KINETICS_PROPERTIES  
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "n-pentane"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "blowingAgent"      
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  BLOWING_CONSTANTS:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.KINETICS_PROPERTIES
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "BlowingConstants"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  GENERIC_CONSTANTS:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.KINETICS_PROPERTIES
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "GenericConstants"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  ENTHALPY_CONSTANTS:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.KINETICS_PROPERTIES
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "EnthalpyConstants"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  A_OH:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GELLING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 1
+      FORCE_OFI_ONTOLOGY.CONCEPT: "A_OH"      
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  E_OH:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GELLING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 35140
+      FORCE_OFI_ONTOLOGY.CONCEPT: "E_OH"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  INIT_COH:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GELLING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 5140
+      FORCE_OFI_ONTOLOGY.CONCEPT: "initCOH"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  INIT_CNCO:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GELLING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 4455
+      FORCE_OFI_ONTOLOGY.CONCEPT: "initCNCO"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  INIT_CW:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GELLING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 671
+      FORCE_OFI_ONTOLOGY.CONCEPT: "initCW" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  GELLING_POINT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GELLING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.606
+      FORCE_OFI_ONTOLOGY.CONCEPT: "gellingPoint"      
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  A_W:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOWING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 1050.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "A_W"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  E_W:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOWING_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 27040.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "E_W"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  IDEAL_GAS_CONS:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 8.3145
+      FORCE_OFI_ONTOLOGY.CONCEPT: "idealGasCons"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  RHO_POLYMER:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 1100.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "rhoPolymer"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  RHO_BLOWING_AGENT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 751.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "rhoBlowingAgent"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+  
+  MOLECULAR_MASS_CO2:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 44.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "molecularMassCO2"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+    
+  MOLECULAR_MASS_BLOWING_AGENT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 72.15
+      FORCE_OFI_ONTOLOGY.CONCEPT: "molecularMassBlowingAgent"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MOLECULAR_MASS_NCO:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 615.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "molecularMassNCO"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MOLECULAR_MASS_LIQUID_FOAM:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 378.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "molecularMassLiquidFoam"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  DXD_TCONS:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: -0.01162790697
+      FORCE_OFI_ONTOLOGY.CONCEPT: "dxdTcons"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  INIT_BLOWING_AGENT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.057
+      FORCE_OFI_ONTOLOGY.CONCEPT: "initBlowingAgent"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  SURFACE_TENSION:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.GENERIC_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.0115
+      FORCE_OFI_ONTOLOGY.CONCEPT: "surfaceTension"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  DELTA_OH:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.ENTHALPY_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: -68500.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "deltaOH"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  DELTA_W:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.ENTHALPY_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: -81500.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "deltaW"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  PU_SPECIFIC_HEAT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.ENTHALPY_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: -1800.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "PUspecificHeat"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  LATENT_HEAT:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.ENTHALPY_CONSTANTS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 200000.0
+      FORCE_OFI_ONTOLOGY.CONCEPT: "latentHeat"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+ ########################### mesh dict data entites
+
+  BLOCK_MESH_DICT_META_DATA:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "FoamFile"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  MESH_DICT_VERSION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 2.2
+      FORCE_OFI_ONTOLOGY.CONCEPT: "version"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MESH_DICT_FORMAT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "ascii"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "format"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MESH_DICT_CLASS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "dictionary"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "class" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"  
+
+  MESH_DICT_LOCATION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "system"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "location"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MESH_DICT_OBJECT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_META_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "blockMeshDict"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "object" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  TO_METER_CONVERTER: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: 0.01
+      FORCE_OFI_ONTOLOGY.CONCEPT: "convertToMeters"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  MESH_DICT_VERTICES: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "((0 0 0) (10 0 0) (10 20 0) (0 20 0) (0 0 1) (10 0 1) (10 20 1) (0 20 1))"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "vertices"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  BLOCKS: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "blocks" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list"
+
+  BLOCK_TYPE:
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCKS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "hex"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "block_type"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+      
+  VERTEX_NUMBERS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCKS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "(0 1 2 3 4 5 6 7)"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "vertex_numbers"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  CELL_NUMBERS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCKS
+    attributes:
+      FORCE_OFI_ONTOLOGY.INT_VECTOR: [5, 10, 1]
+      FORCE_OFI_ONTOLOGY.CONCEPT: "cell_numbers"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  CELL_EXPANSION_TYPE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCKS
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "simpleGrading"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "cell_expansion_type"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  CELL_EXPANSION_RATIO:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.BLOCKS
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VECTOR: [1, 1, 1]
+      FORCE_OFI_ONTOLOGY.CONCEPT: "cell_expansion_ratio"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list_variable"
+
+  EDGES: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "edges"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list"
+      
+  BOUNDARY: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "boundary"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "function"
+      
+  MERGE_PATCH_PAIRS: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BLOCK_MESH_DICT_DATA
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "mergePatchPairs"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "list"
+
+  WALL: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BOUNDARY
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "Wall" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  WALL_TYPE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.WALL
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "wall"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "type"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  WALL_FACES:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.WALL
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "((0 4 7 3) (1 2 6 5) (0 1 5 4))"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "faces"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  FRONT_BACK: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BOUNDARY
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "frontAndBack" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  FRONT_BACK_TYPE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.FRONT_BACK
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "empty"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "type"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  FRONT_BACK_FACES:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.FRONT_BACK
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "((5 6 7 4) (0 3 2 1))"   
+      FORCE_OFI_ONTOLOGY.CONCEPT: "faces"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  ATMOSPHERE: 
+    subclass_of: 
+      - FORCE_OFI_ONTOLOGY.BOUNDARY
+    attributes:
+      FORCE_OFI_ONTOLOGY.CONCEPT: "atmosphere" 
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dictionary"
+
+  ATMOSPHERE_TYPE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.ATMOSPHERE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "patch"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "type"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+  ATMOSPHERE_FACES:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.ATMOSPHERE
+    attributes:
+      FORCE_OFI_ONTOLOGY.STRING_LITERAL: "((6 2 3 7))"
+      FORCE_OFI_ONTOLOGY.CONCEPT: "faces"
+      FORCE_OFI_ONTOLOGY.DATATYPE: "dict_item"
+
+ ########################### physical quantities
+
+  PHYSICAL_QUANTITY_SCALAR:
+    subclass_of:
+      - CUBA.ENTITY
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VALUE: ~
+      FORCE_OFI_ONTOLOGY.UNIT: ~
+
+  PHYSICAL_QUANTITY_VECTOR:
+    subclass_of:
+      - CUBA.ENTITY
+    attributes:
+      FORCE_OFI_ONTOLOGY.FLOAT_VECTOR: ~
+      FORCE_OFI_ONTOLOGY.UNIT: ~
+
+  HEIGHT:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_SCALAR
+
+  WIDTH:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_SCALAR
+
+  DEPTH:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_SCALAR
+
+  VELOCITY:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_VECTOR
+
+  FILLING_VELOCITY:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_VECTOR
+
+  PRESSURE:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_SCALAR
+
+  POSITION:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_VECTOR
+
+  TIME:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_SCALAR
+      
+  ITERATIONS:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.PHYSICAL_QUANTITY_SCALAR   
+
+  FILLING_TIME:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.TIME
+
+############################ accuracy level entites
+
+  ACCURACY_LEVEL:
+    subclass_of:
+      - CUBA.ENTITY
+
+  HIGH_ACCURACY_LEVEL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.ACCURACY_LEVEL
+
+  MEDIUM_ACCURACY_LEVEL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.ACCURACY_LEVEL
+
+  LOW_ACCURACY_LEVEL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.ACCURACY_LEVEL
+
+################################ material entites
+    
+  CHANNEL:
+    subclass_of:
+      - CUBA.ENTITY
+
+  RECTANGULAR_CHANNEL:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.CHANNEL
+
+  MATERIAL:
+    subclass_of:
+      - CUBA.ENTITY
+
+  WATER:
+    subclass_of:
+      - FORCE_OFI_ONTOLOGY.MATERIAL
+
+  OBSTACLE:
+    subclass_of:
+      - CUBA.ENTITY
+
+  PROBE:
+    subclass_of:
+      - CUBA.ENTITY
+
+  ############################ attributes
+
+  INT_VALUE:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: INT
+
+  FLOAT_VALUE:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: FLOAT
+
+  STRING_LITERAL:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+
+  BOOLEAN_EXPRESSION:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: BOOL
+
+  INT_VECTOR:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: VECTOR:INT:3
+
+  FLOAT_VECTOR:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: VECTOR:FLOAT:3
+
+  UNIT:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+
+  CONTENT:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+
+  CONCEPT:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+
+  DATATYPE:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+
+  NAME:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+
+  DIRECTORY:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING
+    
+  IS_COMPLETED:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: BOOL
+
+  OFI_SEGMENT:
+    subclass_of:
+      - CUBA.ATTRIBUTE
+    datatype: STRING

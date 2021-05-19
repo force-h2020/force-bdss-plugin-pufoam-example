@@ -1,0 +1,232 @@
+@prefix : <http://emmo.info/emmo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://emmo.info/emmo/application/meshing> .
+
+<http://emmo.info/emmo/application/meshing> rdf:type owl:Ontology ;
+                                             owl:versionIRI <http://emmo.info/emmo/1.0.0-beta/application/meshing> ;
+                                             owl:imports <http://emmo.info/emmo/1.0.0-beta/application/filesystem> ;
+                                             :EMMO_5525a055_dda5_4556_8b91_f0d22fa676cc """EMMO is released under a Creative Commons license Attribution 4.0 International (CC BY 4.0)
+
+https://creativecommons.org/licenses/by/4.0/legalcode""" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://emmo.info/emmo#EMMO_21f72cf9-a823-45b5-8655-5885a583fe70
+:EMMO_21f72cf9-a823-45b5-8655-5885a583fe70 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_778137f0-b6c0-4804-aada-0b24dedb3a56 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasZLength"@en .
+
+
+###  http://emmo.info/emmo#EMMO_5e8277cf-9d25-4c43-8cb8-dbe4d59c53ca
+:EMMO_5e8277cf-9d25-4c43-8cb8-dbe4d59c53ca rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_778137f0-b6c0-4804-aada-0b24dedb3a56 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasXLength"@en .
+
+
+###  http://emmo.info/emmo#EMMO_5ef2aac6-71d2-41fb-b35f-6fa816f9b668
+:EMMO_5ef2aac6-71d2-41fb-b35f-6fa816f9b668 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_21f72cf9-a823-45b5-8655-5885a583fe70 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasMinimumZCoordinate"@en .
+
+
+###  http://emmo.info/emmo#EMMO_778137f0-b6c0-4804-aada-0b24dedb3a56
+:EMMO_778137f0-b6c0-4804-aada-0b24dedb3a56 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasLength"@en .
+
+
+###  http://emmo.info/emmo#EMMO_85e73fcb-acd4-467f-bf87-5c82d8813df1
+:EMMO_85e73fcb-acd4-467f-bf87-5c82d8813df1 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_5e8277cf-9d25-4c43-8cb8-dbe4d59c53ca ,
+                                                              :EMMO_d281f0ee-c81e-4743-b3fc-1ab0d12f9321 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasXYRadius"@en .
+
+
+###  http://emmo.info/emmo#EMMO_86519c84-2f24-4ab9-a154-04d0496ddaa0
+:EMMO_86519c84-2f24-4ab9-a154-04d0496ddaa0 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_21f72cf9-a823-45b5-8655-5885a583fe70 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasMaximumZCoordinate"@en .
+
+
+###  http://emmo.info/emmo#EMMO_876d11c2-546f-4019-b125-23e3c45d2f69
+:EMMO_876d11c2-546f-4019-b125-23e3c45d2f69 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_d281f0ee-c81e-4743-b3fc-1ab0d12f9321 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasMaximumYCoordinate"@en .
+
+
+###  http://emmo.info/emmo#EMMO_b6481d35-b8c2-45a0-8abe-772f4ab4c40c
+:EMMO_b6481d35-b8c2-45a0-8abe-772f4ab4c40c rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_d281f0ee-c81e-4743-b3fc-1ab0d12f9321 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasMinimumYCoordinate"@en .
+
+
+###  http://emmo.info/emmo#EMMO_c5d9f54f-2cc4-416a-9403-0e9cf3c32c1a
+:EMMO_c5d9f54f-2cc4-416a-9403-0e9cf3c32c1a rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_5e8277cf-9d25-4c43-8cb8-dbe4d59c53ca ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasMaximumXCoordinate"@en .
+
+
+###  http://emmo.info/emmo#EMMO_d281f0ee-c81e-4743-b3fc-1ab0d12f9321
+:EMMO_d281f0ee-c81e-4743-b3fc-1ab0d12f9321 rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_778137f0-b6c0-4804-aada-0b24dedb3a56 ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasYLength"@en .
+
+
+###  http://emmo.info/emmo#EMMO_e9565113-6ecd-4b01-893a-386ca78fc0be
+:EMMO_e9565113-6ecd-4b01-893a-386ca78fc0be rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf :EMMO_5e8277cf-9d25-4c43-8cb8-dbe4d59c53ca ;
+                                           rdf:type owl:InverseFunctionalProperty ,
+                                                    owl:AsymmetricProperty ,
+                                                    owl:IrreflexiveProperty ;
+                                           rdfs:range :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+                                           skos:prefLabel "hasMinimumXCoordinate"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://emmo.info/emmo#EMMO_0efc8352-1080-4520-baf5-d53e1ca505c0
+:EMMO_0efc8352-1080-4520-baf5-d53e1ca505c0 rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_67e2cddc_3dbe_40a0_8662_1f63a184b722 ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :EMMO_c5aae418_1622_4d02_93c5_21159e28e6c1 ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :EMMO_b0ee0fea-da8d-4585-b74a-fc959809caea
+                                                           ] ;
+                                           skos:prefLabel "MeshGeneration"@en .
+
+
+###  http://emmo.info/emmo#EMMO_0fb62313-532d-40da-8d3b-617a599c939d
+:EMMO_0fb62313-532d-40da-8d3b-617a599c939d rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_707c6032_e272_4a20_98b5_d35c4f67be68 ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :EMMO_3afdfb74-6705-41fa-b195-879814e8b70d
+                                                           ] ;
+                                           skos:prefLabel "MeterPerUnitOne"@en .
+
+
+###  http://emmo.info/emmo#EMMO_1581c905-b9b3-4c38-93a5-d5ab8879e7ea
+:EMMO_1581c905-b9b3-4c38-93a5-d5ab8879e7ea rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_46f0f8df_4dc6_418f_8036_10427a3a288e ;
+                                           skos:prefLabel "Rectangle"@en .
+
+
+###  http://emmo.info/emmo#EMMO_160133b8-1c49-4545-bf4e-dcdcbec9c0a6
+:EMMO_160133b8-1c49-4545-bf4e-dcdcbec9c0a6 rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_daf05011_df3f_44a0_bb31_f8d565d7a854 ;
+                                           skos:prefLabel "GeometricalQuantity"@en .
+
+
+###  http://emmo.info/emmo#EMMO_19e55b30-3f3f-4e59-a156-d9a71ff6cc77
+:EMMO_19e55b30-3f3f-4e59-a156-d9a71ff6cc77 rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_89a0c87c_0804_4013_937a_6fe234d9499c ;
+                                           skos:prefLabel "GeometryData"@en .
+
+
+###  http://emmo.info/emmo#EMMO_1e82f083-f4af-4478-8622-96010ab250dc
+:EMMO_1e82f083-f4af-4478-8622-96010ab250dc rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_46f0f8df_4dc6_418f_8036_10427a3a288e ;
+                                           skos:prefLabel "Cylinder"@en .
+
+
+###  http://emmo.info/emmo#EMMO_3afdfb74-6705-41fa-b195-879814e8b70d
+:EMMO_3afdfb74-6705-41fa-b195-879814e8b70d rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_9895a1b4_f0a5_4167_ac5e_97db40b8bfcc ;
+                                           :EMMO_de178b12_5d35_4bca_8efa_a4193162571d "T0 L0 M+1 I0 Θ0 N-1 J0" ;
+                                           skos:prefLabel "ResolutionDimension"@en .
+
+
+###  http://emmo.info/emmo#EMMO_7964d567-ea14-4cb2-bc3b-a11b52212160
+:EMMO_7964d567-ea14-4cb2-bc3b-a11b52212160 rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_89a0c87c_0804_4013_937a_6fe234d9499c ;
+                                           skos:prefLabel "MeshData"@en .
+
+
+###  http://emmo.info/emmo#EMMO_b0ee0fea-da8d-4585-b74a-fc959809caea
+:EMMO_b0ee0fea-da8d-4585-b74a-fc959809caea rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_8681074a_e225_4e38_b586_e85b0f43ce38 ;
+                                           skos:prefLabel "MeshGenerationSoftware"@en .
+
+
+###  http://emmo.info/emmo#EMMO_bc1b794d-bd0a-4aa9-a2ed-f6edc0633f6b
+:EMMO_bc1b794d-bd0a-4aa9-a2ed-f6edc0633f6b rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_64aba1e5_24b7_4140_8eb4_676c35698e79 ,
+                                                           :EMMO_b0ee0fea-da8d-4585-b74a-fc959809caea ;
+                                           skos:prefLabel "GMSH"@en .
+
+
+###  http://emmo.info/emmo#EMMO_d012bae6-9c19-446e-84e1-d90a02c8193d
+:EMMO_d012bae6-9c19-446e-84e1-d90a02c8193d rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_44da6d75_54a4_4aa8_bd3a_156f6e9abb8e ;
+                                           skos:prefLabel "InsidePosition"@en .
+
+
+###  http://emmo.info/emmo#EMMO_d5f71c44-e9f5-4011-b085-ea862acf266b
+:EMMO_d5f71c44-e9f5-4011-b085-ea862acf266b rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_160133b8-1c49-4545-bf4e-dcdcbec9c0a6 ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :EMMO_67fc0a36_8dcb_4ffa_9a43_31074efa3296 ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :EMMO_0fb62313-532d-40da-8d3b-617a599c939d
+                                                           ] ;
+                                           skos:prefLabel "Resolution"@en .
+
+
+###  http://emmo.info/emmo#EMMO_e9532295-651f-49f9-a8c2-319360bb909b
+:EMMO_e9532295-651f-49f9-a8c2-319360bb909b rdf:type owl:Class ;
+                                           rdfs:subClassOf :EMMO_46f0f8df_4dc6_418f_8036_10427a3a288e ;
+                                           skos:prefLabel "Complex"@en .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

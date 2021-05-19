@@ -1,0 +1,36 @@
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=false, version=2" prefer="public" xml:base="">
+        <uri name="http://emmo.info/emmo/1.0.0-beta"                        uri="../EMMO/emmo.ttl"/>
+
+        <uri name="http://emmo.info/emmo/1.0.0-beta/domain/dt-nmbp-09"      uri="./from-dt-nmbp-09.ttl"/>
+
+        <uri name="http://emmo.info/emmo/1.0.0-beta/top"                    uri="../EMMO/top/top.ttl"/>
+
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle"                 uri="../EMMO/middle/middle.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/chemistry"       uri="../EMMO/middle/chemistry.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/perspective"     uri="../EMMO/middle/perspective.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/semiotics"       uri="../EMMO/middle/semiotics.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/perceptual"      uri="../EMMO/middle/perceptual.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/reductionistic"  uri="../EMMO/middle/reductionistic.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/ordinal"         uri="../EMMO/middle/ordinal.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/holistic"        uri="../EMMO/middle/holistic.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/physicalistic"   uri="../EMMO/middle/physicalistic.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/math"            uri="../EMMO/middle/math.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/properties"      uri="../EMMO/middle/properties.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/materials"       uri="../EMMO/middle/materials.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/metrology"       uri="../EMMO/middle/metrology.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/models"          uri="../EMMO/middle/models.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/manufacturing"   uri="../EMMO/middle/manufacturing.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/isq"             uri="../EMMO/middle/isq.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/siunits"         uri="../EMMO/middle/siunits.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/middle/units-extension" uri="../EMMO/middle/units-extension.ttl"/>
+
+        <uri name="http://emmo.info/emmo/1.0.0-beta/domain/commonmaterials"    uri="../EMMO/domain/commonmaterials.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/domain/commonperceptual"   uri="../EMMO/domain/commonperceptual.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/domain/chemicalkinetics"   uri="../EMMO/domain/chemicalkinetics.ttl"/>
+
+        <uri name="http://emmo.info/emmo/1.0.0-beta/application/meshing"  uri="./meshing.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/application/filesystem"  uri="./filesystem.ttl"/>
+        <uri name="http://emmo.info/emmo/1.0.0-beta/application/moldmodelling"  uri="./moldmodelling.ttl"/>
+    </group>
+</catalog>

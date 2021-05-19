@@ -1,0 +1,4 @@
+PREFIX emmo: <http://emmo.info/emmo#>
+SELECT ?model
+WHERE 
+    { ?model rdf:type emmo:EMMO_0efc8352-1080-4520-baf5-d53e1ca505c0}

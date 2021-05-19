@@ -1,0 +1,71 @@
+FoamFile
+{
+	version                       2.2;
+	format                        ascii;
+	class                         dictionary;
+	location                      "system";
+	object                        blockMeshDict;
+}
+
+convertToMeters               0.01;
+xmin                          0;
+xmax                          5;
+ymin                          0;
+ymax                          10;
+zmin                          0;
+zmax                          20;
+geometryType                  Rectangle;
+vertices
+(
+	($xmin $ymin $zmin)
+	($xmax $ymin $zmin)
+	($xmax $ymax $zmin)
+	($xmin $ymax $zmin)
+	($xmin $ymin $zmax)
+	($xmax $ymin $zmax)
+	($xmax $ymax $zmax)
+	($xmin $ymax $zmax)
+);
+blocks
+(
+	hex (0 1 2 3 4 5 6 7) (10 20 40) simpleGrading (1 1 1) 
+);
+edges
+(
+);
+boundary
+(
+	Wall
+	{
+		type                          wall;
+		faces
+		(
+			(0 4 7 3) 
+			(1 2 6 5) 
+			(0 1 5 4) 
+		);
+	}
+
+	frontAndBack
+	{
+		type                          empty;
+		faces
+		(
+			(5 6 7 4) 
+			(0 3 2 1) 
+		);
+	}
+
+	atmosphere
+	{
+		type                          patch;
+		faces
+		(
+			(6 2 3 7) 
+		);
+	}
+
+);
+mergePatchPairs
+(
+);

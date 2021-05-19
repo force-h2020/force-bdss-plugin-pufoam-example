@@ -1,0 +1,4 @@
+PREFIX emmo: <http://emmo.info/emmo#>
+SELECT ?geo
+WHERE 
+    { ?geo rdf:type emmo:EMMO_19e55b30-3f3f-4e59-a156-d9a71ff6cc77}

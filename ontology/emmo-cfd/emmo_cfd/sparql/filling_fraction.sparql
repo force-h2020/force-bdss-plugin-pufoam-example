@@ -1,0 +1,5 @@
+PREFIX emmo: <http://emmo.info/emmo#>
+SELECT ?ffraction ?real
+WHERE 
+    { ?ffraction rdf:type emmo:EMMO_cf8594d8-0810-46b0-9f40-9918e951d0e0 .
+      ?ffraction emmo:EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 ?real}

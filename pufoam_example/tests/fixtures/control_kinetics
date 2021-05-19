@@ -1,0 +1,48 @@
+FoamFile
+{
+	version                       2.2;
+	format                        ascii;
+	class                         dictionary;
+	location                      "constant";
+	object                        kineticsProperties;
+}
+
+GellingConstants
+{
+	A_OH                          1;
+	E_OH                          35140.0;
+	initCOH                       5140;
+	initCNCO                      4455;
+	initCW                        671;
+	gellingPoint                  0.606;
+}
+
+blowingAgent                  n-pentane;
+BlowingConstants
+{
+	A_W                           1050.0;
+	E_W                           27040.0;
+}
+
+GenericConstants
+{
+	idealGasCons                  8.3145;
+	rhoPolymer                    1100.0;
+	rhoBlowingAgent               751.0;
+	molecularMassCO2              44.0;
+	molecularMassBlowingAgent     72.15;
+	molecularMassNCO              615.0;
+	molecularMassLiquidFoam       378.9;
+	dxdTcons                      -0.01162790697;
+	initBlowingAgent              0.057;
+	surfaceTension                0.0115;
+}
+
+EnthalpyConstants
+{
+	deltaOH                       -68500.0;
+	deltaW                        -81500.0;
+	PUspecificHeat                1800.0;
+	latentHeat                    200000.0;
+}
+

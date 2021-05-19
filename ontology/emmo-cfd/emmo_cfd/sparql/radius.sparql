@@ -1,0 +1,6 @@
+PREFIX emmo: <http://emmo.info/emmo#>
+SELECT ?length ?real
+WHERE 
+    { ?geometry emmo:EMMO_85e73fcb-acd4-467f-bf87-5c82d8813df1 ?length .
+      ?length rdf:type emmo:EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac . 
+      ?length emmo:EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 ?real}

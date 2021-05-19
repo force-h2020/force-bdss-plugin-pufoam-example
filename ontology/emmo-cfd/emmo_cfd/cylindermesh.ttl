@@ -1,0 +1,171 @@
+@prefix : <http://emmo.info/emmo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://emmo.info/emmo/application/cylindermesh> .
+
+<http://emmo.info/emmo/application/cylindermesh> rdf:type owl:Ontology ;
+                                                  owl:versionIRI <http://emmo.info/emmo/1.0.0-beta/application/cylindermesh> ;
+                                                  owl:imports <http://emmo.info/emmo/1.0.0-beta/application/moldmodelling> ;
+                                                  :EMMO_5525a055_dda5_4556_8b91_f0d22fa676cc """EMMO is released under a Creative Commons license Attribution 4.0 International (CC BY 4.0)
+                                                    https://creativecommons.org/licenses/by/4.0/legalcode""" .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://emmo.info/emmo#array
+:array rdf:type owl:NamedIndividual ,
+                :EMMO_20ff3b34_c864_4936_8955_9345fc0a3b3c ;
+       :EMMO_60577dea_9019_4537_ac41_80b0fb563d41 :mesh_data .
+
+
+###  http://emmo.info/emmo#cylinder
+:cylinder rdf:type owl:NamedIndividual ,
+                   :EMMO_1e82f083-f4af-4478-8622-96010ab250dc .
+
+
+###  http://emmo.info/emmo#dimension_one
+:dimension_one rdf:type owl:NamedIndividual ,
+                        :EMMO_3227b821_26a5_4c7c_9c01_5c24483e0bd0 .
+
+
+###  http://emmo.info/emmo#fill_data
+:fill_data rdf:type owl:NamedIndividual ,
+                    :EMMO_73d05ba0-5afd-41c5-804d-150850170c5b ;
+           :EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe :filling_frac .
+
+
+###  http://emmo.info/emmo#filling
+:filling rdf:type owl:NamedIndividual ,
+                  :EMMO_5a9244e8-2a62-45e4-871d-5270903b326a ;
+         :EMMO_60577dea_9019_4537_ac41_80b0fb563d41 :fill_data .
+
+
+###  http://emmo.info/emmo#filling_frac
+:filling_frac rdf:type owl:NamedIndividual ,
+                       :EMMO_cf8594d8-0810-46b0-9f40-9918e951d0e0 ;
+              :EMMO_67fc0a36_8dcb_4ffa_9a43_31074efa3296 :filling_frac_unit ;
+              :EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 :filling_frac_real .
+
+
+###  http://emmo.info/emmo#filling_frac_real
+:filling_frac_real rdf:type owl:NamedIndividual ,
+                            :EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+                   :EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "0.75"^^xsd:double .
+
+
+###  http://emmo.info/emmo#filling_frac_unit
+:filling_frac_unit rdf:type owl:NamedIndividual ,
+                            :EMMO_9fd1e79d_41d1_44f8_8142_66dbdf0fc7ad ;
+                   :EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 :dimension_one .
+
+
+###  http://emmo.info/emmo#geo_data
+:geo_data rdf:type owl:NamedIndividual ,
+                   :EMMO_19e55b30-3f3f-4e59-a156-d9a71ff6cc77 ;
+          :EMMO_21f72cf9-a823-45b5-8655-5885a583fe70 :length ;
+          :EMMO_6ef0c509-e53c-4a51-aae5-c6f789371a9b :cylinder ;
+          :EMMO_85e73fcb-acd4-467f-bf87-5c82d8813df1 :radius .
+
+
+###  http://emmo.info/emmo#gmsh
+:gmsh rdf:type owl:NamedIndividual ,
+               :EMMO_bc1b794d-bd0a-4aa9-a2ed-f6edc0633f6b .
+
+
+###  http://emmo.info/emmo#length
+:length rdf:type owl:NamedIndividual ,
+                 :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+        :EMMO_67fc0a36_8dcb_4ffa_9a43_31074efa3296 :length_unit ;
+        :EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 :length_real .
+
+
+###  http://emmo.info/emmo#length_dimension
+:length_dimension rdf:type owl:NamedIndividual ,
+                           :EMMO_b3600e73_3e05_479d_9714_c041c3acf5cc .
+
+
+###  http://emmo.info/emmo#length_real
+:length_real rdf:type owl:NamedIndividual ,
+                      :EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+             :EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "82.0"^^xsd:double .
+
+
+###  http://emmo.info/emmo#length_unit
+:length_unit rdf:type owl:NamedIndividual ,
+                      :EMMO_7db11dbf_a643_464a_9b56_07eabcc3e9c5 ;
+             :EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 :length_dimension ;
+             :EMMO_23b579e1_8088_45b5_9975_064014026c42 "m"^^xsd:string .
+
+
+###  http://emmo.info/emmo#mesh_data
+:mesh_data rdf:type owl:NamedIndividual ,
+                    :EMMO_7964d567-ea14-4cb2-bc3b-a11b52212160 ;
+           :EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe :resolution .
+
+
+###  http://emmo.info/emmo#mesh_generation
+:mesh_generation rdf:type owl:NamedIndividual ,
+                          :EMMO_0efc8352-1080-4520-baf5-d53e1ca505c0 ;
+                 :EMMO_0090db08_8af6_4744_a9a6_5b2f6e554951 :mesh_data ;
+                 :EMMO_85e3a5ba_9187_45ef_855f_7f129bf48e95 :geo_data ;
+                 :EMMO_c5aae418_1622_4d02_93c5_21159e28e6c1 :fill_data ,
+                                                            :gmsh .
+
+
+###  http://emmo.info/emmo#radius
+:radius rdf:type owl:NamedIndividual ,
+                 :EMMO_cd2cd0de_e0cc_4ef1_b27e_2e88db027bac ;
+        :EMMO_67fc0a36_8dcb_4ffa_9a43_31074efa3296 :radius_unit ;
+        :EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 :radius_real .
+
+
+###  http://emmo.info/emmo#radius_dimension
+:radius_dimension rdf:type owl:NamedIndividual ,
+                           :EMMO_b3600e73_3e05_479d_9714_c041c3acf5cc .
+
+
+###  http://emmo.info/emmo#radius_real
+:radius_real rdf:type owl:NamedIndividual ,
+                      :EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+             :EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "25.0"^^xsd:double .
+
+
+###  http://emmo.info/emmo#radius_unit
+:radius_unit rdf:type owl:NamedIndividual ,
+                      :EMMO_7db11dbf_a643_464a_9b56_07eabcc3e9c5 ;
+             :EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 :radius_dimension ;
+             :EMMO_23b579e1_8088_45b5_9975_064014026c42 "m"^^xsd:string .
+
+
+###  http://emmo.info/emmo#resolution
+:resolution rdf:type owl:NamedIndividual ,
+                     :EMMO_d5f71c44-e9f5-4011-b085-ea862acf266b ;
+            :EMMO_67fc0a36_8dcb_4ffa_9a43_31074efa3296 :resolution_unit ;
+            :EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 :resolution_real .
+
+
+###  http://emmo.info/emmo#resolution_dimension
+:resolution_dimension rdf:type owl:NamedIndividual ,
+                               :EMMO_3afdfb74-6705-41fa-b195-879814e8b70d .
+
+
+###  http://emmo.info/emmo#resolution_real
+:resolution_real rdf:type owl:NamedIndividual ,
+                          :EMMO_18d180e4_5e3e_42f7_820c_e08951223486 ;
+                 :EMMO_faf79f53_749d_40b2_807c_d34244c192f4 "10.0"^^xsd:double .
+
+
+###  http://emmo.info/emmo#resolution_unit
+:resolution_unit rdf:type owl:NamedIndividual ,
+                          :EMMO_0fb62313-532d-40da-8d3b-617a599c939d ;
+                 :EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 :resolution_dimension ;
+                 :EMMO_23b579e1_8088_45b5_9975_064014026c42 "\"m/cell\""^^xsd:string .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

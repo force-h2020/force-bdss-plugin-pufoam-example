@@ -1,0 +1,6 @@
+PREFIX emmo: <http://emmo.info/emmo#>
+SELECT ?resolution ?real
+WHERE 
+    { ?resolution rdf:type emmo:EMMO_d5f71c44-e9f5-4011-b085-ea862acf266b . 
+      ?resolution emmo:EMMO_8ef3cd6d_ae58_4a8d_9fc0_ad8f49015cd0 ?real}
+

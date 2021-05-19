@@ -1,0 +1,27 @@
+FoamFile
+{
+	version                       2.2;
+	format                        ascii;
+	class                         dictionary;
+	location                      "";
+	object                        default;
+}
+
+Group
+{
+	entry_1                       1;
+	entry_2                       2;
+}
+
+Entry                         42;
+Group2
+{
+	entry_1                       100;
+	entry_2                       200;
+}
+
+ListGroup
+(
+	1 2 3 
+	dict_entry                    41;
+);
