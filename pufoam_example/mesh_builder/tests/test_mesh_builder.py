@@ -28,9 +28,9 @@ class TestMeshBuilder(TestCase):
         mesh = res[0].value
         self.assertIsInstance(mesh, RectangularMesh)
         self.assertEqual('cm', mesh.units)
-        self.assertEqual(5, mesh.length)
-        self.assertEqual(10, mesh.width)
-        self.assertEqual(20, mesh.height)
+        self.assertEqual(5, mesh.x_length)
+        self.assertEqual(10, mesh.y_length)
+        self.assertEqual(20, mesh.z_length)
         self.assertEqual(5, mesh.resolution)
 
         model.mesh_type = 'Cylinder'

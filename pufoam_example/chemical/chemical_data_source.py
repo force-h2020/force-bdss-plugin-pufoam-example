@@ -34,7 +34,7 @@ class ChemicalDataSource(BaseDataSource):
             input_slots = (
                 Slot(
                     type="CONCENTRATION",
-                    description=f"Concentration by weight (%)",
+                    description="Concentration by weight (%)",
                 ),
             )
         else:

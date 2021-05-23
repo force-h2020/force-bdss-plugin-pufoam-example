@@ -27,9 +27,9 @@ class MeshBuilderDataSource(BaseDataSource):
 
         mesh = RectangularMesh(
             units=model.units,
-            length=model.length,
-            width=model.width,
-            height=model.height,
+            x_length=model.length,
+            y_length=model.width,
+            z_length=model.height,
             resolution=model.resolution
         )
         return mesh

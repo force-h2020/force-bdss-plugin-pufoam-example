@@ -2,6 +2,8 @@ import click
 import os
 import shutil
 import subprocess
+import tempfile
+import uuid
 
 
 DEFAULT_PYTHON_VERSION = "3.6"
@@ -11,23 +13,13 @@ ADDITIONAL_CORE_DEPS = [
     "numpy==1.17.4-1"
 ]
 
-# Pin to a specific osp-core tag
-osp_core_tag = "v3.3.8-beta"
-gmsh_wrapper_tag = "v0.1"
-emmo_cfd_tag = "v0.1"
 ADDITIONAL_PIP_DEPS = [
     "docker>=3.3.0-0",
-    f"git+https://github.com/simphony/osp-core.git@" + osp_core_tag,
-    f"git+https://github.com/simphony/emmo-cfd.git@" + emmo_cfd_tag,
-    f"git+https://github.com/simphony/GMSHWrapper.git@" + gmsh_wrapper_tag,
+    "git+https://github.com/simphony/emmo-cfd.git@v0.2"
 ]
 
-ONTOLOGY_PATH = [
-    "ontology",
-    "emmo-cfd",
-    "emmo-cfd",
-    "yml",
-    "ontology.pufoam.yml"
+PIP_DEPS_W_REQUIREMENTS = [
+    ["https://github.com/simphony/GMSHWrapper.git", "v0.1"]
 ]
 
 
@@ -55,6 +47,31 @@ def install(python_version):
     if returncode:
         raise click.ClickException("Error while installing EDM dependencies.")
 
+    for package, tag in PIP_DEPS_W_REQUIREMENTS:
+        repo_name = f"git_repo_{str(uuid.uuid4())}"
+        returncode = subprocess.call(
+            ["git", "clone", "-b", tag, "--depth", "1", package, repo_name],
+            cwd=tempfile.gettempdir()
+        )
+        if returncode:
+            raise click.ClickException("Error while cloning git dependencies.")
+        repo_path = os.path.join(tempfile.gettempdir(), repo_name)
+        returncode = edm_run(
+            env_name,
+            ["pip", "install", "-r", "requirements.txt"],
+            cwd=repo_path
+        )
+        if returncode:
+            raise click.ClickException(
+                "Error while pip dependency requirements."
+            )
+        returncode = edm_run(
+            env_name, ["python", "setup.py", "install"], cwd=repo_path)
+        if returncode:
+            raise click.ClickException(
+                "Error while installing pip dependencies."
+            )
+
     returncode = edm_run(
         env_name, ["pip", "install"] + ADDITIONAL_PIP_DEPS)
     if returncode:
@@ -66,11 +83,12 @@ def install(python_version):
 
     returncode = edm_run(
         env_name,
-        ["pico", "install", "--overwrite", os.path.join(*ONTOLOGY_PATH)]
+        ["python", "install_ontology.py"],
+        cwd=os.path.dirname(__file__)
     )
     if returncode:
         raise click.ClickException(
-            "Error while installing SimPUFoam-ontology."
+            "Error while installing PUFoam-ontology."
         )
 
 

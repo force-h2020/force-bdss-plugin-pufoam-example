@@ -15,7 +15,7 @@ class DummyRectangularMesh(RectangularMesh):
 
     def __init__(self, *args, **kwargs):
         super().__init__(
-            units='cm', length=10, width=2, height=20, resolution=5)
+            units='cm', x_length=10, y_length=2, z_length=20, resolution=5)
 
 
 class DummyCylinderMesh(CylinderMesh):

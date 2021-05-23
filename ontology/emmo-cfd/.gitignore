@@ -1,7 +1,0 @@
-*__pycache__
-*.pyc
-*.egg
-*.egg-info
-build
-# Remove VS Code preference directory
-.vscode/

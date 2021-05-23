@@ -22,14 +22,14 @@ class TestPUFoamDataSource(TestCase):
         self.data_source = self.factory.create_data_source()
         self.model = self.factory.create_model()
         self.rectangle = RectangularMesh(
-            length=10,
-            width=2,
-            height=20,
+            x_length=10,
+            y_length=2,
+            z_length=20,
             resolution=5,
             units="cm"
         )
         self.cylinder = CylinderMesh(
-            radius=6,
+            xy_radius=6,
             resolution=10,
             units="cm"
         )

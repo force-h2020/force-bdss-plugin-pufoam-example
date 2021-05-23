@@ -16,9 +16,9 @@ class TestMeshes(TestCase):
     def setUp(self):
         # Define rectangular mesh and its properties
         self.rectangular = RectangularMesh(
-            length=20,
-            width=10,
-            height=150,
+            x_length=20,
+            y_length=10,
+            z_length=150,
             resolution=4,
             filling_fraction=0.5,
             units="mm"
@@ -34,8 +34,8 @@ class TestMeshes(TestCase):
 
         # Define cylindrical mesh and its properties
         self.cylinder = CylinderMesh(
-            radius=5,
-            height=20,
+            xy_radius=5,
+            z_length=20,
             resolution=7,
             filling_fraction=0.5,
             units="cm"
