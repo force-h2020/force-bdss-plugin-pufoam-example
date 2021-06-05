@@ -19,7 +19,7 @@ Afterwards, clone the git repository:
 
 .. code-block:: console
 
-    git clone --recurse-submodules git@gitlab.cc-asp.fraunhofer.de:Force/force-bdss-plugin-pufoam-example.git
+    git clone https://github.com/force-h2020/force-bdss-plugin-pufoam-example.git
 
 After downloading, enter the source directory and run:
 
@@ -66,12 +66,6 @@ the ``SimPUFoamDataSource`` which is converting the input data from the previous
 ``CUDS``-object of the `OSP-core <https://github.com/simphony/osp-core>`_.
 
 This ``CUDS``-object is sent to the target-server via ``TransportSession`` using ``WebSockets``.
-
-The target-sever is hosting at least two composed Docker containers: one with the simulation backend with the ``PUFoam``-solver and one with the contributing `SimOpenFoam-wrapper <https://gitlab.cc-asp.fraunhofer.de/simphony/wrappers/simopenfoam>`_.
-
-The according ontology placed in the git submodule under ``<pufoam-plugin-repository>/ontology`` is cloned and installed during the setup described in the sections above.
-
-**Please note: in order to initialise the git submodules for cloning the ontology into your plugin-repository, please make sure that you have access to the `FORCE-subgroup <https://gitlab.cc-asp.fraunhofer.de/ontology/applications/force>` of the ontology-group on the Fraunhofer-GitLab!**
 
 Plugin functionality
 ####################
