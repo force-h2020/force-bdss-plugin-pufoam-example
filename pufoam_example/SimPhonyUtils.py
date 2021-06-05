@@ -22,9 +22,10 @@ from pufoam_example.pufoam_simulation.pufoam_data.data_format import (
 from osp.core.session.transport.transport_session_client import \
     TransportSessionClient
 from osp.core.session import SimWrapperSession
+from osp.core.namespaces import cuba
 
 try:
-    from osp.core import force_ofi_ontology as onto
+    from osp.core.namespaces import force_ofi_ontology as onto
 except ImportError:
     pass
 
@@ -77,17 +78,17 @@ def CudsUpdater(cuds, concept, value):
     """
     found_cuds = CudsFinder(cuds, concept)
     keys = found_cuds.get_attributes().keys()
-    if onto["IntVector"] in keys:
+    if onto["INT_VECTOR"] in keys:
         found_cuds.int_vector = value
-    elif onto["FloatVector"] in keys:
+    elif onto["FLOAT_VECTOR"] in keys:
         found_cuds.float_vector = value
-    elif onto["StringLiteral"] in keys:
+    elif onto["STRING_LITERAL"] in keys:
         found_cuds.string_literal = value
-    elif onto["FloatValue"] in keys:
+    elif onto["FLOAT_VALUE"] in keys:
         found_cuds.float_value = value
-    elif onto["IntValue"] in keys:
+    elif onto["INT_VALUE"] in keys:
         found_cuds.int_value = value
-    elif onto["BooleanExpression"] in keys:
+    elif onto["BOOLEAN_EXPRESSION"] in keys:
         found_cuds.boolean_expression = value
 
 
@@ -116,10 +117,13 @@ def CudsFinder(cuds, concept):
     """
     target_entity = onto[cuds.oclass.name]
     for subclass in target_entity.subclasses:
-        if concept in subclass.attributes.values():
+        attributes = list(subclass.attributes.values())
+        attributes = [element[0].toPython() for element in attributes]
+        if concept in attributes:
             path = subclass.superclasses
     for superentity in target_entity.superclasses:
-        path.remove(superentity)
+        if superentity != cuba.Entity:
+            path.remove(superentity)
     return _trace_path(cuds, path)
 
 
@@ -201,6 +205,7 @@ def _trace_path(target_cuds, path):
         attribute found during the scan of the `cuds`
     """
     if len(path):
+        path = list(path)
         subcuds = target_cuds.get(oclass=path[-1]).pop()
         path.pop(-1)
         return _trace_path(subcuds, path)
@@ -236,26 +241,26 @@ def _write_file_contents(openfoam_data, commands, case_files, outputs):
         instance of onto["Simulation"]-class holding semantic as well as
         syntactic data needed for the simulation engine
     """
-    simulation = onto["Simulation"]()
-    input_files = onto["InputFiles"]()
-    output_files = onto["OutputFiles"]()
-    case = onto["Case"](name=case_files)
+    simulation = onto["SIMULATION"]()
+    input_files = onto["INPUT_FILES"]()
+    output_files = onto["OUTPUT_FILES"]()
+    case = onto["CASE"](name=case_files)
     for output in outputs:
         loc, name = os.path.split(output)
-        target_file = onto["File"](
+        target_file = onto["FILE"](
             name=name,
             directory=loc,
             content=str(),
             datatype="output_file"
         )
-        output_files.add(target_file, rel=onto["HasPart"])
+        output_files.add(target_file, rel=onto["HAS_PART"])
     runner = onto["File"](
             name="run.sh",
             directory=str(),
             content=str(),
             datatype="runner"
     )
-    input_files.add(runner, rel=onto["HasPart"])
+    input_files.add(runner, rel=onto["HAS_PART"])
     for command in commands:
         runner.content += command + "\n"
     simulation.add(
@@ -263,7 +268,7 @@ def _write_file_contents(openfoam_data, commands, case_files, outputs):
         case,
         input_files,
         output_files,
-        rel=onto["HasPart"]
+        rel=onto["HAS_PART"]
     )
     _cuds2dict(simulation)
     return simulation
@@ -288,19 +293,19 @@ def _cuds2dict(simulation):
     cuds_dict : `foam_format()` function from
                 `pufoam_example.pufoam_simulation.pufoam_data.data_format`
     """
-    openfoam_data = simulation.get(oclass=onto["OpenFoamData"]).pop()
-    input_files = simulation.get(oclass=onto["InputFiles"]).pop()
-    for data_dict in onto["OpenFoamData"].direct_subclasses:
+    openfoam_data = simulation.get(oclass=onto["OPEN_FOAM_DATA"]).pop()
+    input_files = simulation.get(oclass=onto["INPUT_FILE"]).pop()
+    for data_dict in onto["OPEN_FOAM_DATA"].direct_subclasses:
         target_dict = openfoam_data.get(oclass=data_dict).pop()
         loc = CudsFinder(target_dict, "location").string_literal
         name = CudsFinder(target_dict, "object").string_literal
-        target_file = onto["File"](
+        target_file = onto["FILE"](
             name=name,
             directory=loc,
             content=str(),
             datatype="input_file"
         )
-        input_files.add(target_file, rel=onto["HasPart"])
+        input_files.add(target_file, rel=onto["HAS_PART"])
         nested_dict = _recursive_dict_add(target_dict, dict())
         for line in foam_format(nested_dict):
             target_file.content += line + "\n"
@@ -335,17 +340,17 @@ def _recursive_dict_add(cuds, cuds_dict):
         keys = subcuds.get_attributes().keys()
         datatype = subcuds.datatype
         concept = subcuds.concept
-        if onto["IntVector"] in keys:
+        if onto["INT_VECTOR"] in keys:
             additive = list(subcuds.int_vector)
-        elif onto["FloatVector"] in keys:
+        elif onto["FLOAT_VECTOR"] in keys:
             additive = list(subcuds.float_vector)
-        elif onto["StringLiteral"] in keys:
+        elif onto["STRING_LITERAL"] in keys:
             additive = subcuds.string_literal
-        elif onto["FloatValue"] in keys:
+        elif onto["FLOAT_VALUE"] in keys:
             additive = subcuds.float_value
-        elif onto["IntValue"] in keys:
+        elif onto["INT_VALUE"] in keys:
             additive = subcuds.int_value
-        elif onto["BooleanExpression"] in keys:
+        elif onto["BOOLEAN_EXPRESSION"] in keys:
             additive = subcuds.boolean_expression
         if datatype == "dict_item":
             cuds_dict[concept] = additive
@@ -389,7 +394,7 @@ def _run_simulation(simulation, host, port):
     """
     print("Sending cuds object to", host, "with uid =", simulation.uid)
     with TransportSessionClient(SimWrapperSession, host, port) as session:
-        wrapper = onto["ForceOfiWrapper"](session=session)
+        wrapper = onto["FORCE_OFI_WRAPPER"](session=session)
         wrapper.add(simulation)
         wrapper.session.run()
         simulation = wrapper.get(simulation.uid)
@@ -416,7 +421,7 @@ def _cuds_output_to_file(simulation):
         of interest.
     """
     outputdir = tempfile.mkdtemp(dir=tempfile.gettempdir())
-    output = simulation.get(oclass=onto["OutputFiles"]).pop()
+    output = simulation.get(oclass=onto["OUTPUT_FILES"]).pop()
     paths = list()
     for outputfile in output.iter():
         paths.append(outputdir)

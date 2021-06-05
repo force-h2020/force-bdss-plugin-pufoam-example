@@ -103,18 +103,17 @@ class PUFoamDataSource(BaseDataSource):
         Prepare the mesh using Openfoam commands.
         """
         response = session.block_mesh()
-        if self.data_dicts[1].data["geometryType"] != 'Rectangle':
-            session.upload_mesh(
-                os.path.join(
-                    model.simulation_directory,
-                    "new_surface.stl"
-                )
-            )
-            response = session.transform_scale(
-                self.data_dicts[1].data["convertToMeters"],
+        session.upload_mesh(
+            os.path.join(
+                model.simulation_directory,
                 "new_surface.stl"
             )
-            session.snappy_hex_mesh()
+        )
+        response = session.transform_scale(
+            self.data_dicts[1].data["convertToMeters"],
+            "new_surface.stl"
+        )
+        session.snappy_hex_mesh()
 
         return response
 
@@ -184,28 +183,16 @@ class PUFoamDataSource(BaseDataSource):
 
     def update_mesh_data(self, mesh, model):
 
-        if isinstance(mesh, RectangularMesh):
-            geometryType = "Rectangle"
-            mesh.write_mesh()
-        elif isinstance(mesh, CylinderMesh):
-            geometryType = "Cylinder"
-            mesh.write_mesh(model.simulation_directory)
-            self.data_dicts[4].update_stl_data(
-                mesh.stl_extent,
-                mesh.inside_location
-            )
+        if isinstance(mesh, ComplexMesh):
+            mesh.inspect_file()
+            copy2(mesh.source_path, model.simulation_directory)
         else:
-            geometryType = "Complex"
             mesh.write_mesh(model.simulation_directory)
-            self.data_dicts[4].update_stl_data(
-                mesh.stl_extent,
-                mesh.inside_location
-            )
 
-        self.data_dicts[1].update_mesh_dimensions(mesh.blockmesh_extent)
-        self.data_dicts[1].update_geometry_type(geometryType)
+        self.data_dicts[1].update_mesh_dimensions(mesh.max_extent)
         self.data_dicts[1].update_mesh_resolution(mesh.ncells)
         self.data_dicts[1].update_mesh_scale(mesh.convert_to_meters)
+        self.data_dicts[4].update_stl_data(mesh.stl_extent, mesh.inside_location)
 
     def update_control_data(self, model):
         self.data_dicts[2].update_end_time(model.time_steps)
@@ -215,7 +202,6 @@ class PUFoamDataSource(BaseDataSource):
         mesh.filling_fraction = filling_fraction
 
         if isinstance(mesh, CylinderMesh):
-            self.data_dicts[3].mesh_type = "Cylinder"
             self.data_dicts[3].update_cylinder_volume(mesh.filling_extent)
         else:
             self.data_dicts[3].update_box_volume(mesh.filling_extent)

@@ -51,7 +51,6 @@ class BlockMeshData(PUFoamDataDict):
                 "ymax": 10,
                 "zmin": 0,
                 "zmax": 20,
-                "geometryType": "Rectangle",
                 "vertices": domain_vertices.copy(),
                 "blocks": blocks.copy(),
                 "edges": edges.copy(),
@@ -70,6 +69,3 @@ class BlockMeshData(PUFoamDataDict):
 
     def update_mesh_scale(self, scale):
         self.data["convertToMeters"] = scale
-
-    def update_geometry_type(self, type):
-        self.data["geometryType"] = type

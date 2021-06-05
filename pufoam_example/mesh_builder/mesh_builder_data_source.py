@@ -15,8 +15,8 @@ class MeshBuilderDataSource(BaseDataSource):
         """
         mesh = CylinderMesh(
             units=model.units,
-            radius=model.radius,
-            height=model.height,
+            xy_radius=model.xy_radius,
+            z_length=model.z_length,
             resolution=model.resolution
         )
         return mesh
@@ -27,9 +27,9 @@ class MeshBuilderDataSource(BaseDataSource):
 
         mesh = RectangularMesh(
             units=model.units,
-            x_length=model.length,
-            y_length=model.width,
-            z_length=model.height,
+            x_length=model.x_length,
+            y_length=model.y_length,
+            z_length=model.z_length,
             resolution=model.resolution
         )
         return mesh

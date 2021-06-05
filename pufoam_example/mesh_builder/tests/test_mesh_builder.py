@@ -40,5 +40,5 @@ class TestMeshBuilder(TestCase):
         mesh = res[0].value
         self.assertIsInstance(mesh, CylinderMesh)
         self.assertEqual('cm', mesh.units)
-        self.assertEqual(5, mesh.radius)
-        self.assertEqual(20, mesh.height)
+        self.assertEqual(5, mesh.xy_radius)
+        self.assertEqual(20, mesh.z_length)

@@ -23,4 +23,4 @@ class DummyCylinderMesh(CylinderMesh):
     def __init__(self, *args, **kwargs):
         super().__init__(
             units='cm', base=(0, 0, 0), direction=(0, 0, 1),
-            radius=2, height=10, resolution=5)
+            xy_adius=2, z_length=10, resolution=5)

@@ -15,7 +15,7 @@ class TestSimPUFoamDataSource(TestCase):
             plugin={'id': '0', 'name': 'test'})
         self.data_source = self.factory.create_data_source()
         self.model = self.factory.create_model()
-        self.cuds = CudsBuilder("OpenFoamData")
+        self.cuds = CudsBuilder("OPEN_FOAM_DATA")
 
     def test_model_getstate(self):
         state = self.model.__getstate__()

@@ -9,7 +9,7 @@ class SimPUFoamDataSource(BaseDataSource):
 
     def run(self, model, parameters):
 
-        cuds = CudsBuilder("OpenFoamData")
+        cuds = CudsBuilder("OPEN_FOAM_DATA")
 
         for parameter in parameters:
 

@@ -198,10 +198,10 @@ class TestPUFoamDataSource(TestCase):
             snappyhex = self.data_source.data_dicts[4]
 
             self.data_source.update_mesh_data(self.rectangle, self.model)
-            for ax in self.rectangle.blockmesh_extent.keys():
-                for direction in self.rectangle.blockmesh_extent[ax].keys():
+            for ax in self.rectangle.max_extent.keys():
+                for direction in self.rectangle.max_extent[ax].keys():
                     self.assertEqual(
-                        self.rectangle.blockmesh_extent[ax][direction],
+                        self.rectangle.max_extent[ax][direction],
                         blockmesh.data[ax+direction]
                     )
             self.assertListEqual(
@@ -221,10 +221,10 @@ class TestPUFoamDataSource(TestCase):
             self.data_source.update_mesh_data(self.cylinder, self.model)
             box = snappyhex.data['geometry']["refinementBox"]
             loc = snappyhex.data['castellatedMeshControls']['locationInMesh']
-            for num, ax in enumerate(self.cylinder.blockmesh_extent.keys()):
-                for direction in self.cylinder.blockmesh_extent[ax].keys():
+            for num, ax in enumerate(self.cylinder.max_extent.keys()):
+                for direction in self.cylinder.max_extent[ax].keys():
                     self.assertEqual(
-                        self.cylinder.blockmesh_extent[ax][direction],
+                        self.cylinder.max_extent[ax][direction],
                         blockmesh.data[ax+direction]
                     )
                     self.assertEqual(
@@ -256,10 +256,10 @@ class TestPUFoamDataSource(TestCase):
             self.data_source.update_mesh_data(self.complex, self.model)
             box = snappyhex.data['geometry']["refinementBox"]
             loc = snappyhex.data['castellatedMeshControls']['locationInMesh']
-            for num, ax in enumerate(self.complex.blockmesh_extent.keys()):
-                for direction in self.complex.blockmesh_extent[ax].keys():
+            for num, ax in enumerate(self.complex.max_extent.keys()):
+                for direction in self.complex.max_extent[ax].keys():
                     self.assertEqual(
-                        self.complex.blockmesh_extent[ax][direction],
+                        self.complex.max_extent[ax][direction],
                         blockmesh.data[ax+direction]
                     )
                     self.assertEqual(
@@ -296,19 +296,19 @@ class TestPUFoamDataSource(TestCase):
         fraction = 0.2
         with TemporaryDirectory() as temp_dir:
             fields_dict = self.data_source.data_dicts[3]
-            self.rectangle.write_mesh()
+            self.rectangle.write_mesh(temp_dir)
             self.cylinder.write_mesh(temp_dir)
-            self.complex.write_mesh(temp_dir)
+            self.complex.inspect_file
 
             self.data_source.update_fields_data(self.rectangle, fraction)
             self.assertListEqual(
                 [
                     [0, 0, 0],
                     [
-                        self.rectangle.length*self.rectangle.convert_to_meters,
-                        self.rectangle.width*self.rectangle.convert_to_meters,
+                        self.rectangle.x_length*self.rectangle.convert_to_meters,
+                        self.rectangle.y_length*self.rectangle.convert_to_meters,
                         round(
-                            self.rectangle.height *
+                            self.rectangle.z_length *
                             self.rectangle.convert_to_meters *
                             fraction,
                             2
@@ -320,11 +320,11 @@ class TestPUFoamDataSource(TestCase):
 
             self.data_source.update_fields_data(self.cylinder, fraction)
             self.assertEqual(
-                self.cylinder.radius*self.cylinder.convert_to_meters,
+                self.cylinder.xy_radius*self.cylinder.convert_to_meters,
                 fields_dict.regions[1]['cylinderToCell']['radius']
             )
             self.assertEqual(
-                fraction*self.cylinder.height*self.cylinder.convert_to_meters,
+                fraction*self.cylinder.z_length*self.cylinder.convert_to_meters,
                 fields_dict.regions[1]['cylinderToCell']['p2'][-1]
             )
 

@@ -173,7 +173,7 @@ class PUFoamPostProcessingDataSource(BaseDataSource):
             markers, data)
 
         y_data = np.unique(filling_fraction)
-        y_data *= mesh.height * mesh.convert_to_meters
+        y_data *= mesh.z_length * mesh.convert_to_meters
         x_data = time[:len(y_data)]
 
         return np.array([x_data, y_data])

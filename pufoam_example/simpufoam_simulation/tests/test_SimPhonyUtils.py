@@ -12,7 +12,7 @@ class test_SimPhonyUtils(TestCase):
         self.factory = self.plugin.data_source_factories[-1]
         self.data_source = self.factory.create_data_source()
         self.model = self.factory.create_model()
-        self.cuds = CudsBuilder("OpenFoamData")
+        self.cuds = CudsBuilder("OPEN_FOAM_DATA")
 
     def test_Cuds_Builder_CudsUpdater_CudsFinder(self):
         new_val = 1.5
@@ -36,14 +36,14 @@ class test_SimPhonyUtils(TestCase):
     def test_cuds_to_outputfile(self):
         test_str = "This is a test string"
 
-        testfile = onto["File"](
+        testfile = onto["FILE"](
             name="testfile.dat",
             directory="testfolder",
             content=str(),
             datatype="output_file"
         )
-        output = onto["OutputFiles"]()
-        simulation = onto["Simulation"]()
+        output = onto["OUTPUT_FILES"]()
+        simulation = onto["SIMULATION"]()
 
         output.add(testfile)
         simulation.add(output)

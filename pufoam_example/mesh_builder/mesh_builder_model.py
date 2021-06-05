@@ -27,13 +27,13 @@ class MeshBuilderDataSourceModel(BaseDataSourceModel):
     units = Enum('cm', SUPPORTED_UNITS,
                  desc='Unit length for mesh dimensions')
 
-    length = Int(5, desc='Length of rectangular domain mesh')
+    x_length = Int(5, desc='X-Length of rectangular domain mesh')
 
-    width = Int(10, desc='Width of rectangular domain mesh')
+    y_length = Int(10, desc='Y-Length of rectangular domain mesh')
 
-    radius = Int(5, desc='Radius of cylinder domain mesh')
+    xy_radius = Int(5, desc='Radius of cylinder domain mesh')
 
-    height = Int(20, desc='Height of domain mesh')
+    z_length = Int(20, desc='Z-Length of domain mesh')
 
     resolution = Int(5, desc="Number of mesh elements per unit length")
 
@@ -48,10 +48,10 @@ class MeshBuilderDataSourceModel(BaseDataSourceModel):
     traits_view = View(
         Item('mesh_type'),
         Item('units'),
-        Item('length', visible_when="mesh_type=='Rectangular'"),
-        Item('width', visible_when="mesh_type=='Rectangular'"),
-        Item('radius', visible_when="mesh_type=='Cylinder'"),
-        Item('height', visible_when="mesh_type!='Complex'"),
+        Item('x_length', visible_when="mesh_type=='Rectangular'"),
+        Item('y_length', visible_when="mesh_type=='Rectangular'"),
+        Item('xy_radius', visible_when="mesh_type=='Cylinder'"),
+        Item('z_length', visible_when="mesh_type!='Complex'"),
         Item('resolution'),
         Item('path', visible_when="mesh_type=='Complex'"),
         Item('inside_location', visible_when="mesh_type=='Complex'")

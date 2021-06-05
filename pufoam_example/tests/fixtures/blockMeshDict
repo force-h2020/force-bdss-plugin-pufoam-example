@@ -14,7 +14,6 @@ ymin                          0;
 ymax                          10;
 zmin                          0;
 zmax                          20;
-geometryType                  Rectangle;
 vertices
 (
 	($xmin $ymin $zmin)
